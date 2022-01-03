@@ -16,7 +16,6 @@ export class PokemonItemComponent implements OnInit {
   onDeleteClick() {
     this.deleteClick.emit(this.name)
     console.log('deleted');
-
   }
 
 
