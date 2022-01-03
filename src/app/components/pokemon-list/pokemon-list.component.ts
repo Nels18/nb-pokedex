@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -6,28 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
+  @ViewChild ("nameInput") nameInputElementRef: ElementRef | undefined;
+  pokemonName = "";
+  pokemons: string[] = [];
   allowNewPokemon = true;
   pokemonAdded = false;
-  pokemonName = '';
-  pokemons: string[] = [];
 
-  constructor() { }
+  constructor(private pokemonService: PokemonService) { 
+    this.pokemons = this.pokemonService.pokemons;
+  }
 
   ngOnInit(): void {
   }
 
   addPokemon() {
     this.pokemonAdded = true;
-    this.pokemons.push(this.pokemonName);
-    console.log(this.pokemons);
+    this.pokemonService.addPokemon(this.pokemonName);
     this.pokemonName = '';
   }
 
   removePokemon(pokemonName: string, index: number) {
     console.log('removed');
-    this.pokemons.splice(index, 1);
-    console.log(pokemonName, index);
-
+    this.pokemonService.removePokemon(this.pokemonName);
   }
 
 }
