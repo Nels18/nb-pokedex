@@ -1,4 +1,12 @@
+<a routerLink="/"><button class="btn btn-primary">Home</button></a>
 <h1>Pokemon : {{ pokemon?.name }}</h1>
+
+<nav class="nav nav-tabs">
+  <a class="nav-link" routerLinkActive="active" routerLink="general">General</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="stats">Stats</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="evolutions">Evolutions</a>
+</nav>
+<router-outlet></router-outlet>
 
 <nav class="navbar fixed-bottom navbar-light bg-light">
   <div class="container-fluid">
