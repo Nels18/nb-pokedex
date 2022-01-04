@@ -10,9 +10,9 @@
   <!-- <app-pokemon-item *ngFor="let pokemon of pokemons" [name]="pokemonName"></app-pokemon-item> -->
   <app-pokemon-item
   appBasicHighlight
+  (click)="goToPokemonPage(pokemon.name)"
   *ngFor="let pokemon of pokemons; let i = index"
-  [pokemonName]="pokemon"
-  (deleteClick)="removePokemon(pokemonName, i)"
+  [pokemonName]="pokemon.name"
   ></app-pokemon-item>
 </ul>
 <ng-template #noPokemon>

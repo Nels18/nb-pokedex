@@ -1,0 +1,20 @@
+<h1>Pokemon : {{ pokemon?.name }}</h1>
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <div class="container-fluid">
+    <button
+      class="btn btn-primary"
+      [disabled]="!previousPokemonName"
+      (click)="goToPreviousPokemon()"
+    >
+      Previous pokémon
+    </button>
+    <button
+      class="btn btn-primary"
+      [disabled]="!nextPokemonName"
+      (click)="goToNextPokemon()"
+    >
+      Next pokémon
+    </button>
+  </div>
+</nav>

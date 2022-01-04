@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LoggingService } from 'src/app/services/logging.service';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -10,8 +9,8 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonItemComponent implements OnInit {
   @Input('pokemonName') name: string | undefined = '';
   @Output() deleteClick = new EventEmitter<string>();
+  
   constructor(
-    private loggingService: LoggingService,
     private pokemonService: PokemonService
   ) { }
 
@@ -20,6 +19,5 @@ export class PokemonItemComponent implements OnInit {
 
   onDeleteClick() {
     this.pokemonService.removePokemon(this.name!);
-    this.loggingService.logItemRemoved(this.name!);
   }
 }
