@@ -1,7 +1,7 @@
 <h2>My Pokémons</h2>
 <p>Pokémons caught {{pokemons.length}}</p>
 <div class="p-3">
-  <input type="text" class="form-control" placeholder="Enter a pokémon name" [(ngModel)]="pokemonName">
+  <input type="text" class="form-control" placeholder="Enter a pokémon name" [(ngModel)]="pokemonName" (input)="onPokemonNameType()">
   <button class="btn btn-primary" [disabled]="!allowNewPokemon" (click)="addPokemon()">
     Add pokemon
   </button>

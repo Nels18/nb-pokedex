@@ -24,10 +24,15 @@ export class PokemonListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onPokemonNameType() {
+    this.pokemonService.isEditingPokemon = this.pokemonName !== '';
+  }
+
   addPokemon() {
     if (!this.pokemonName) return;
     this.pokemonAdded = true;
     this.pokemonService.addPokemon(this.pokemonName);
+    this.pokemonService.isEditingPokemon = false;
     this.pokemonName = '';
   }
 

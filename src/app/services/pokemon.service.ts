@@ -11,6 +11,7 @@ export interface Pokemon {
 })
 export class PokemonService {
   pokemons: Pokemon[] = [];
+  isEditingPokemon = false;
 
   constructor(private loggingService: LoggingService) { }
 
