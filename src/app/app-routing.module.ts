@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { PreventPokemonFormLeaveGuard } from './guards/auth/prevent-pokemon-form-leave.guard';
+import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PokemonComponent } from './pages/pokemon/pokemon.component';
 import { EvolutionsComponent } from './pages/pokemon/tabs/evolutions/evolutions.component';
@@ -9,9 +12,11 @@ import { StatsComponent } from './pages/pokemon/tabs/stats/stats.component';
 const routes: Routes = [
   {
     path: '',
+    canDeactivate: [PreventPokemonFormLeaveGuard],
     component: HomeComponent
   },
   {
+    canActivate: [AuthGuard],
     path: 'pokemon/:name',
     component: PokemonComponent,
     children: [
@@ -34,6 +39,18 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'not-found',
+    component: ErrorComponent,
+    data: {
+      title: 'Page not found !',
+      message: 'You look lost !'
+    }
+  },
+  {
+    path:'**',
+    redirectTo: "not-found",
+  }
 ];
 
 @NgModule({

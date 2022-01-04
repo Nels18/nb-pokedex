@@ -1,4 +1,6 @@
 <div class="container">
   <h1>Pokédex</h1>
+  <button type="button" *ngIf="!authService.loggedIn" class="btn btn-primary" (click)="onLogin()">Se connecter</button>
+  <button type="button" *ngIf="authService.loggedIn" class="btn btn-danger" (click)="onLogout()">Se déconnecter</button>
   <app-pokemon-list></app-pokemon-list>
 </div>
