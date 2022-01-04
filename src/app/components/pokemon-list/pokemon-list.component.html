@@ -1,0 +1,20 @@
+<h2>My Pokémons</h2>
+<p>Pokémons caught {{pokemons.length}}</p>
+<div class="p-3">
+  <input type="text" class="form-control" placeholder="Enter a pokémon name" [(ngModel)]="pokemonName">
+  <button class="btn btn-primary" [disabled]="!allowNewPokemon" (click)="addPokemon()">
+    Add pokemon
+  </button>
+</div>
+<ul class="list-group" *ngIf="pokemonAdded; else noPokemon">
+  <!-- <app-pokemon-item *ngFor="let pokemon of pokemons" [name]="pokemonName"></app-pokemon-item> -->
+  <app-pokemon-item
+  appBasicHighlight
+  *ngFor="let pokemon of pokemons; let i = index"
+  [pokemonName]="pokemon"
+  (deleteClick)="removePokemon(pokemonName, i)"
+  ></app-pokemon-item>
+</ul>
+<ng-template #noPokemon>
+  No pokemon has been created yet
+</ng-template>
