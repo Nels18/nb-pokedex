@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { Router } from '@angular/router';
+import { Pokemon, PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -9,11 +10,14 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonListComponent implements OnInit {
   @ViewChild ("nameInput") nameInputElementRef: ElementRef | undefined;
   pokemonName = "";
-  pokemons: string[] = [];
+  pokemons: Pokemon[] = [];
   allowNewPokemon = true;
   pokemonAdded = false;
 
-  constructor(private pokemonService: PokemonService) { 
+  constructor(
+    private pokemonService: PokemonService,
+    private router: Router
+  ) {
     this.pokemons = this.pokemonService.pokemons;
   }
 
@@ -21,14 +25,14 @@ export class PokemonListComponent implements OnInit {
   }
 
   addPokemon() {
+    if (!this.pokemonName) return;
     this.pokemonAdded = true;
     this.pokemonService.addPokemon(this.pokemonName);
     this.pokemonName = '';
   }
 
-  removePokemon(pokemonName: string, index: number) {
-    console.log('removed');
-    this.pokemonService.removePokemon(this.pokemonName);
+  goToPokemonPage(name: string) {
+    this.router.navigate([`/pokemon/${name}`]);
   }
 
 }
