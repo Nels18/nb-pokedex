@@ -22,10 +22,6 @@ export class PokemonComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.pokemonName = params["name"];
-      this.pokemon = {
-        id: this.pokemonService.findPokemonIndex(this.pokemonName!),
-        name: this.pokemonName!
-      };
       this.nextPokemonName = this.pokemonService.getNextPokemonName(this.pokemonName);
       this.previousPokemonName = this.pokemonService.getPreviousPokemonName(this.pokemonName);
     })

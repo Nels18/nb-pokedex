@@ -8,8 +8,8 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class PokemonItemComponent implements OnInit {
   @Input('pokemonName') name: string | undefined = '';
-  @Output() deleteClick = new EventEmitter<string>();
-  
+  @Output() deleteClick = new EventEmitter();
+
   constructor(
     private pokemonService: PokemonService
   ) { }
@@ -17,7 +17,9 @@ export class PokemonItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDeleteClick() {
-    this.pokemonService.removePokemon(this.name!);
+  onDeleteClick($event: MouseEvent) {
+    $event.stopPropagation();
+    this.pokemonService.removePokemonByName(this.name!);
   }
+
 }
