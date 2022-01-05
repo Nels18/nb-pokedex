@@ -6,7 +6,7 @@
     Add pokemon
   </button>
 </div>
-<ul class="list-group" *ngIf="pokemonAdded; else noPokemon">
+<ul class="list-group" *ngIf="pokemons.length != 0; else noPokemon">
   <!-- <app-pokemon-item *ngFor="let pokemon of pokemons" [name]="pokemonName"></app-pokemon-item> -->
   <app-pokemon-item
   appBasicHighlight
